@@ -70,9 +70,9 @@ public class WeatherDataArrayAdapter extends ArrayAdapter<WeatherData> {
         TextView yearAddedTV =
             (TextView) convertView.findViewById(R.id.year_added_to_db);
 
-        resultTV.setText(data.mLongForm);
-        dbRefsTV.setText("" + data.mFreq);
-        yearAddedTV.setText("" + data.mSince);
+//        resultTV.setText(data.mLongForm);
+//        dbRefsTV.setText("" + data.mFreq);
+//        yearAddedTV.setText("" + data.mSince);
 
         return convertView;
     }

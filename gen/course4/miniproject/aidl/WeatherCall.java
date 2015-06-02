@@ -51,9 +51,15 @@ case TRANSACTION_getCurrentWeather:
 data.enforceInterface(DESCRIPTOR);
 java.lang.String _arg0;
 _arg0 = data.readString();
-java.util.List<course4.miniproject.aidl.WeatherData> _result = this.getCurrentWeather(_arg0);
+course4.miniproject.aidl.WeatherData _result = this.getCurrentWeather(_arg0);
 reply.writeNoException();
-reply.writeTypedList(_result);
+if ((_result!=null)) {
+reply.writeInt(1);
+_result.writeToParcel(reply, android.os.Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
+}
+else {
+reply.writeInt(0);
+}
 return true;
 }
 }
@@ -80,17 +86,22 @@ return DESCRIPTOR;
     * service and returns a list of AcronymData containing the results
     * from the Web service back to the AcronymActivity.
     */
-@Override public java.util.List<course4.miniproject.aidl.WeatherData> getCurrentWeather(java.lang.String nameCity) throws android.os.RemoteException
+@Override public course4.miniproject.aidl.WeatherData getCurrentWeather(java.lang.String nameCity) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 android.os.Parcel _reply = android.os.Parcel.obtain();
-java.util.List<course4.miniproject.aidl.WeatherData> _result;
+course4.miniproject.aidl.WeatherData _result;
 try {
 _data.writeInterfaceToken(DESCRIPTOR);
 _data.writeString(nameCity);
 mRemote.transact(Stub.TRANSACTION_getCurrentWeather, _data, _reply, 0);
 _reply.readException();
-_result = _reply.createTypedArrayList(course4.miniproject.aidl.WeatherData.CREATOR);
+if ((0!=_reply.readInt())) {
+_result = course4.miniproject.aidl.WeatherData.CREATOR.createFromParcel(_reply);
+}
+else {
+_result = null;
+}
 }
 finally {
 _reply.recycle();
@@ -107,5 +118,5 @@ static final int TRANSACTION_getCurrentWeather = (android.os.IBinder.FIRST_CALL_
     * service and returns a list of AcronymData containing the results
     * from the Web service back to the AcronymActivity.
     */
-public java.util.List<course4.miniproject.aidl.WeatherData> getCurrentWeather(java.lang.String nameCity) throws android.os.RemoteException;
+public course4.miniproject.aidl.WeatherData getCurrentWeather(java.lang.String nameCity) throws android.os.RemoteException;
 }

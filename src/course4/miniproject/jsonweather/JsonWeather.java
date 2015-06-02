@@ -1,6 +1,7 @@
 package course4.miniproject.jsonweather;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -37,6 +38,7 @@ public class JsonWeather {
     private long mId;
     private String mName;
     private long mCod;
+    private Date mDate;
 
     /**
      * Constructor that initializes all the fields of interest.
@@ -65,6 +67,7 @@ public class JsonWeather {
      * No-op constructor
      */
     public JsonWeather() {
+    	mDate=new Date();
     }
 
     /**
@@ -205,5 +208,9 @@ public class JsonWeather {
      */
     public void setCod(long cod) {
         mCod = cod;
+    }
+    
+    public boolean passedTenMin(Date date){
+    	return (date.getTime()-mDate.getTime()>10000);
     }
 }

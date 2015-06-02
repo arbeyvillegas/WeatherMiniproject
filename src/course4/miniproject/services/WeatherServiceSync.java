@@ -73,28 +73,27 @@ public class WeatherServiceSync extends LifecycleLoggingService {
              * returns the results back to the Activity.
              */
             @Override
-            public List<WeatherData> getCurrentWeather(String cityName)
+            public WeatherData getCurrentWeather(String cityName)
                 throws RemoteException {
 
                 // Call the Weather Web service to get the list of
                 // possible expansions of the designated Weather.
-                final List<WeatherData> WeatherResults = 
-                    Utils.getResults(cityName);
+                final WeatherData weatherResult = 
+                    Utils.getResult(cityName);
 
-                if (WeatherResults != null) {
-                    Log.d(TAG, "" 
-                          + WeatherResults.size() 
+                if (weatherResult != null) {
+                    Log.d(TAG, ""
                           + " results for Weather: " 
                           + cityName);
 
                     // Return the list of Weather expansions back to the
                     // WeatherActivity.
-                    return WeatherResults;
+                    return weatherResult;
                 } else {
                     // Create a zero-sized WeatherResults object to
                     // indicate to the caller that the Weather had no
                     // expansions.
-                    return new ArrayList<WeatherData>();
+                    return null;
                 }
             }
 	};

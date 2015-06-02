@@ -51,7 +51,7 @@ public class WeatherOpsImpl implements WeatherOps {
     /**
      * List of results to display (if any).
      */
-    protected List<WeatherData> mResults;
+    protected WeatherData mResult;
 
     /**
      * A custom ArrayAdapter used to display the list of WeatherData
@@ -95,7 +95,7 @@ public class WeatherOpsImpl implements WeatherOps {
              * return the results back to the WeatherActivity.
              */
             @Override
-            public void sendResults(final List<WeatherData> WeatherDataList)
+            public void sendResult(final WeatherData weatherData)
                 throws RemoteException {
                 // Since the Android Binder framework dispatches this
                 // method in a background Thread we need to explicitly
@@ -106,7 +106,7 @@ public class WeatherOpsImpl implements WeatherOps {
                 // during a runtime configuration change.
                 mDisplayHandler.post(new Runnable() {
                         public void run() {
-                            displayResults(WeatherDataList);
+                            displayResults(weatherData);
                         }
                     });
             }
@@ -172,8 +172,8 @@ public class WeatherOpsImpl implements WeatherOps {
         mListView.get().setAdapter(mAdapter.get());
 
         // Display results if any (due to runtime configuration change).
-        if (mResults != null)
-            displayResults(mResults);
+        if (mResult != null)
+            displayResults(mResult);
     }
 
     /**
@@ -306,7 +306,7 @@ public class WeatherOpsImpl implements WeatherOps {
             // Use an anonymous AsyncTask to download the Weather data
             // in a separate thread and then display any results in
             // the UI thread.
-            new AsyncTask<String, Void, List<WeatherData>> () {
+            new AsyncTask<String, Void, WeatherData> () {
                 /**
                  * Weather we're trying to expand.
                  */
@@ -317,7 +317,7 @@ public class WeatherOpsImpl implements WeatherOps {
                  * synchronous two-way method call, which runs in a
                  * background thread to avoid blocking the UI thread.
                  */
-                protected List<WeatherData> doInBackground(String... Weathers) {
+                protected WeatherData doInBackground(String... Weathers) {
                     try {
                         mWeather = Weathers[0];
                         return WeatherCall.getCurrentWeather(mWeather);
@@ -330,9 +330,9 @@ public class WeatherOpsImpl implements WeatherOps {
                 /**
                  * Display the results in the UI Thread.
                  */
-                protected void onPostExecute(List<WeatherData> WeatherDataList) {
-                    if (WeatherDataList.size() > 0)
-                        displayResults(WeatherDataList);
+                protected void onPostExecute(WeatherData weatherData) {
+                    if (weatherData!=null)
+                        displayResults(weatherData);
                     else 
                         Utils.showToast(mActivity.get(),
                                         "no expansions for "
@@ -353,12 +353,12 @@ public class WeatherOpsImpl implements WeatherOps {
      * @param results
      *            List of Results to be displayed.
      */
-    private void displayResults(List<WeatherData> results) {
-        mResults = results;
+    private void displayResults(WeatherData result) {
+        mResult = result;
 
         // Set/change data set.
         mAdapter.get().clear();
-        mAdapter.get().addAll(mResults);
+        mAdapter.get().addAll(mResult);
         mAdapter.get().notifyDataSetChanged();
     }
 
@@ -368,7 +368,7 @@ public class WeatherOpsImpl implements WeatherOps {
     private void resetDisplay() {
         Utils.hideKeyboard(mActivity.get(),
                            mEditText.get().getWindowToken());
-        mResults = null;
+        mResult = null;
         mAdapter.get().clear();
         mAdapter.get().notifyDataSetChanged();
     }

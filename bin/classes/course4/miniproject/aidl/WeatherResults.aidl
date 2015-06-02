@@ -13,7 +13,7 @@ interface WeatherResults {
      * to return the List of WeatherData results associated with a
      * one-way AcronymRequest.callAcronymRequest() call.
      */
-    oneway void sendResults(in List<WeatherData> results);
+    oneway void sendResult(in WeatherData result);
 
     /**
      * This one-way (non-blocking) method allows WeatherServiceAsync

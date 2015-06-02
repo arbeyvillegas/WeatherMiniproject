@@ -46,12 +46,17 @@ case INTERFACE_TRANSACTION:
 reply.writeString(DESCRIPTOR);
 return true;
 }
-case TRANSACTION_sendResults:
+case TRANSACTION_sendResult:
 {
 data.enforceInterface(DESCRIPTOR);
-java.util.List<course4.miniproject.aidl.WeatherData> _arg0;
-_arg0 = data.createTypedArrayList(course4.miniproject.aidl.WeatherData.CREATOR);
-this.sendResults(_arg0);
+course4.miniproject.aidl.WeatherData _arg0;
+if ((0!=data.readInt())) {
+_arg0 = course4.miniproject.aidl.WeatherData.CREATOR.createFromParcel(data);
+}
+else {
+_arg0 = null;
+}
+this.sendResult(_arg0);
 return true;
 }
 case TRANSACTION_sendError:
@@ -85,13 +90,19 @@ return DESCRIPTOR;
      * to return the List of WeatherData results associated with a
      * one-way AcronymRequest.callAcronymRequest() call.
      */
-@Override public void sendResults(java.util.List<course4.miniproject.aidl.WeatherData> results) throws android.os.RemoteException
+@Override public void sendResult(course4.miniproject.aidl.WeatherData result) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 try {
 _data.writeInterfaceToken(DESCRIPTOR);
-_data.writeTypedList(results);
-mRemote.transact(Stub.TRANSACTION_sendResults, _data, null, android.os.IBinder.FLAG_ONEWAY);
+if ((result!=null)) {
+_data.writeInt(1);
+result.writeToParcel(_data, 0);
+}
+else {
+_data.writeInt(0);
+}
+mRemote.transact(Stub.TRANSACTION_sendResult, _data, null, android.os.IBinder.FLAG_ONEWAY);
 }
 finally {
 _data.recycle();
@@ -114,7 +125,7 @@ _data.recycle();
 }
 }
 }
-static final int TRANSACTION_sendResults = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
+static final int TRANSACTION_sendResult = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
 static final int TRANSACTION_sendError = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
 }
 /**
@@ -122,7 +133,7 @@ static final int TRANSACTION_sendError = (android.os.IBinder.FIRST_CALL_TRANSACT
      * to return the List of WeatherData results associated with a
      * one-way AcronymRequest.callAcronymRequest() call.
      */
-public void sendResults(java.util.List<course4.miniproject.aidl.WeatherData> results) throws android.os.RemoteException;
+public void sendResult(course4.miniproject.aidl.WeatherData result) throws android.os.RemoteException;
 /**
      * This one-way (non-blocking) method allows WeatherServiceAsync
      * to return an error String if the Service fails for some reason.

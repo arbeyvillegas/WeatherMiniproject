@@ -82,17 +82,16 @@ public class WeatherServiceAsync extends LifecycleLoggingService {
 
                 // Call the Weather Web service to get the list of
                 // possible expansions of the designated Weather.
-                final List<WeatherData> WeatherResults = 
-                    Utils.getResults(cityName);
+                final WeatherData weatherResult = 
+                    Utils.getResult(cityName);
 
-                if (WeatherResults != null) {
+                if (weatherResult != null) {
                     Log.d(TAG, "" 
-                          + WeatherResults.size() 
-                          + " results for Weather: " 
+                          + "Results for Weather: " 
                           + cityName);
                     // Invoke a one-way callback to send list of
                     // Weather expansions back to the WeatherActivity.
-                    callback.sendResults(WeatherResults);
+                    callback.sendResult(weatherResult);
                 } else
                     // Invoke a one-way callback to send an error
                     // message back to the WeatherActivity.

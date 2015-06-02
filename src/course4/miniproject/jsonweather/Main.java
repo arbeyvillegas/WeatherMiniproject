@@ -1,5 +1,6 @@
 package course4.miniproject.jsonweather;
 
+
 /**
  * This "Plain Ol' Java Object" (POJO) class represents data related
  * to temperature, pressure, and humidity downloaded in Json from the

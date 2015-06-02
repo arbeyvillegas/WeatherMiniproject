@@ -14,5 +14,5 @@ interface WeatherCall {
     * service and returns a list of AcronymData containing the results
     * from the Web service back to the AcronymActivity.
     */
-    List<WeatherData> getCurrentWeather (in String nameCity);
+    WeatherData getCurrentWeather (in String nameCity);
 }

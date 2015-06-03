@@ -1,10 +1,13 @@
 package course4.miniproject.jsonweather;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * This "Plain Ol' Java Object" (POJO) class represents data related
  * to wind downloaded in Json from the Weather Service.
  */
-public class Wind {
+public class Wind implements Parcelable {
     /**
      * Various tags corresponding to wind data downloaded in Json from
      * the Weather Service.
@@ -19,6 +22,10 @@ public class Wind {
     private double mSpeed;
     private double mDeg;
 
+    public Wind(Parcel in){
+    	mSpeed=in.readDouble();
+    	mDeg=in.readDouble();
+    }
     /**
      * @return The speed
      */
@@ -48,4 +55,26 @@ public class Wind {
     public void setDeg(double deg) {
         mDeg = deg;
     }
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		dest.writeDouble(mSpeed);
+		dest.writeDouble(mDeg);
+	}
+	public static final Parcelable.Creator<Wind> CREATOR = new Parcelable.Creator<Wind>() {
+		public Wind createFromParcel(Parcel in) {
+			return new Wind(in);
+		}
+
+		public Wind[] newArray(int size) {
+			return new Wind[size];
+		}
+	};
 }

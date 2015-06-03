@@ -1,12 +1,15 @@
 package course4.miniproject.jsonweather;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 
 /**
  * This "Plain Ol' Java Object" (POJO) class represents data related
  * to temperature, pressure, and humidity downloaded in Json from the
  * Weather Service.
  */
-public class Main {
+public class Main implements Parcelable {
     /**
      * Various tags corresponding to temperature, pressure, and
      * humidity data downloaded in Json from the Weather Service.
@@ -31,6 +34,16 @@ public class Main {
     private double mGrndLevel;
     private long mHumidity;
 
+    public Main(Parcel in){
+    	mTemp=in.readDouble();
+    	mTempMin=in.readDouble();
+    	mTempMax=in.readDouble();
+    	mPressure=in.readDouble();
+    	mSeaLevel=in.readDouble();
+    	mGrndLevel=in.readDouble();
+    	mHumidity=in.readLong();
+    }
+    
     /**
      * @return The temperature
      */
@@ -135,4 +148,34 @@ public class Main {
     public void setHumidity(long humidity) {
         mHumidity = humidity;
     }
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		dest.writeDouble(mTemp);
+		dest.writeDouble(mTempMin);
+		dest.writeDouble(mTempMax);
+		dest.writeDouble(mPressure);
+		dest.writeDouble(mSeaLevel);
+		dest.writeDouble(mGrndLevel);
+		dest.writeLong(mHumidity);
+	}
+	
+	
+    public static final Parcelable.Creator<Main> CREATOR =
+        new Parcelable.Creator<Main>() {
+        public Main createFromParcel(Parcel in) {
+            return new Main(in);
+        }
+
+        public Main[] newArray(int size) {
+            return new Main[size];
+        }
+    };
 }

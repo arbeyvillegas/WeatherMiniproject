@@ -160,16 +160,16 @@ public class WeatherOpsImpl implements WeatherOps {
             ((EditText) mActivity.get().findViewById(R.id.editText1));
 
         // Store the ListView for displaying the results entered.
-        mListView = new WeakReference<>
-            ((ListView) mActivity.get().findViewById(R.id.listView1));
+        //mListView = new WeakReference<>
+        //    ((ListView) mActivity.get().findViewById(R.id.listView1));
 
         // Create a local instance of our custom Adapter for our
         // ListView.
-        mAdapter = new WeakReference<>
-            (new WeatherDataArrayAdapter(mActivity.get()));
+        //mAdapter = new WeakReference<>
+        //    (new WeatherDataArrayAdapter(mActivity.get()));
 
         // Set the adapter to the ListView.
-        mListView.get().setAdapter(mAdapter.get());
+        //mListView.get().setAdapter(mAdapter.get());
 
         // Display results if any (due to runtime configuration change).
         if (mResult != null)
@@ -357,9 +357,9 @@ public class WeatherOpsImpl implements WeatherOps {
         mResult = result;
 
         // Set/change data set.
-        mAdapter.get().clear();
-        mAdapter.get().addAll(mResult);
-        mAdapter.get().notifyDataSetChanged();
+        //mAdapter.get().clear();
+        //mAdapter.get().addAll(mResult);
+        //mAdapter.get().notifyDataSetChanged();
     }
 
     /**
@@ -369,7 +369,7 @@ public class WeatherOpsImpl implements WeatherOps {
         Utils.hideKeyboard(mActivity.get(),
                            mEditText.get().getWindowToken());
         mResult = null;
-        mAdapter.get().clear();
-        mAdapter.get().notifyDataSetChanged();
+        //mAdapter.get().clear();
+        //mAdapter.get().notifyDataSetChanged();
     }
 }

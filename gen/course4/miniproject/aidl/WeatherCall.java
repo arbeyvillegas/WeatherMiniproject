@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: C:\\Users\\M\\workspace-android\\Course4Miniproject\\src\\course4\\miniproject\\aidl\\WeatherCall.aidl
+ * Original file: D:\\SGYC\\Desarrollo\\GitHub\\Android\\WeatherMiniproject\\src\\course4\\miniproject\\aidl\\WeatherCall.aidl
  */
 package course4.miniproject.aidl;
 /**

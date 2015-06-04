@@ -6,6 +6,9 @@ import course4.miniproject.utils.RetainedFragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import course4.miniproject.R;
+import android.widget.Button;
+import android.view.View.OnClickListener;
 
 /**
  * The main Activity that prompts the user for Weathers to expand via
@@ -46,6 +49,26 @@ public class MainActivity extends LifecycleLoggingActivity {
 
         // Handle any configuration change.
         handleConfigurationChanges();
+        
+        Button btnAsync = (Button) findViewById(R.id.btnAsync);
+        btnAsync.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				 Log.d(TAG,
+		                  "Click Async");
+				 expandWeatherAsync(v);
+			}
+		});
+        
+        Button btnSync = (Button) findViewById(R.id.btnSync);
+        btnSync.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				 Log.d(TAG,
+						 "Click Sync");
+				 expandWeatherSync(v);
+			}
+		});
     }
 
     /**

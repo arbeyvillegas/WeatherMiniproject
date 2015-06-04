@@ -33,7 +33,10 @@ public class Main implements Parcelable {
     private double mSeaLevel;
     private double mGrndLevel;
     private long mHumidity;
-
+    
+    public Main()
+    {}
+    
     public Main(Parcel in){
     	mTemp=in.readDouble();
     	mTempMin=in.readDouble();

@@ -5,46 +5,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.walkernation.aidlservice.MainActivity"
-    tools:ignore="MergeRootFrame" >
+    tools:ignore="MergeRootFrame"
+    android:background="#F3F3F3" >
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Please enter a city to look up." >
-
-        <requestFocus />
-    </EditText>
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-      <Button
-         android:id="@+id/button1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:onClick="expandAcronymSync"
-         android:text="Look Up Sync" />
-
-      <Button
-         android:id="@+id/button2"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:onClick="expandAcronymAsync"
-         android:text="Look Up Async" />
-    </LinearLayout>
-
-    <include
-        android:id="@+id/labels"
-        layout="@layout/weather_data_row" />
-
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+		
+        <ImageView
+	        android:id="@+id/img"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:src="@drawable/plan"
+	        android:layout_centerHorizontal="true"/>
+        
+        <Button
+            android:id="@+id/btnSync"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#0ACEE8"
+            android:text="@string/btn_Sync"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/editText1"/>
+        
+        <Button
+            android:id="@+id/btnAsync"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#0ACEE8"
+            android:text="@string/btn_Async" 
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/editText1"/>
+ 
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/img"
+            android:layout_marginTop="2dp"
+            android:ems="10"
+            android:hint="@string/edit_City"
+            android:textColor="#000000"
+            android:textColorHint="#000000" />
+        
+    </RelativeLayout >
 
 </LinearLayout>

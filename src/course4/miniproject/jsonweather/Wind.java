@@ -4,29 +4,32 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * This "Plain Ol' Java Object" (POJO) class represents data related
- * to wind downloaded in Json from the Weather Service.
+ * This "Plain Ol' Java Object" (POJO) class represents system data downloaded
+ * in Json from the Wind Service.
  */
 public class Wind implements Parcelable {
-    /**
-     * Various tags corresponding to wind data downloaded in Json from
-     * the Weather Service.
-     */
-    public final static String deg_JSON = "deg";
-    public final static String speed_JSON = "speed";
+	/**
+	 * Various tags corresponding to system data downloaded in Json from the
+	 * Wind Service.
+	 */
+	public final static String speed_JSON = "speed";
+	public final static String deg_JSON = "deg";
 
-    /**
-     * Various fields corresponding to wind data downloaded in Json
-     * from the Weather Service.
-     */
-    private double mSpeed;
+	/**
+	 * Various fields corresponding to system data downloaded in Json from the
+	 * Wind Service.
+	 */
+	private double mSpeed;
     private double mDeg;
-
-    public Wind(Parcel in){
-    	mSpeed=in.readDouble();
+	
+	public Wind()
+	{}
+	
+	public Wind(Parcel in) {
+		mSpeed=in.readDouble();
     	mDeg=in.readDouble();
-    }
-    /**
+	}
+/**
      * @return The speed
      */
     public double getSpeed() {
@@ -68,6 +71,7 @@ public class Wind implements Parcelable {
 		dest.writeDouble(mSpeed);
 		dest.writeDouble(mDeg);
 	}
+
 	public static final Parcelable.Creator<Wind> CREATOR = new Parcelable.Creator<Wind>() {
 		public Wind createFromParcel(Parcel in) {
 			return new Wind(in);

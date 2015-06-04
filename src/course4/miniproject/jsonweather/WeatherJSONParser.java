@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Parcelable.Creator;
 import android.util.JsonReader;
 import android.util.JsonToken;
 import android.util.Log;
@@ -129,7 +130,7 @@ public class WeatherJSONParser {
      */
     public Weather parseWeather(JsonReader reader) throws IOException {
         // TODO -- you fill in here.    
-    	Weather weather=new Weather(); 
+    	Weather weather= new Weather();
 
         // TODO -- you fill in here.
     	reader.beginObject();

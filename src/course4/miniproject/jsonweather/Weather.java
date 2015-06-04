@@ -25,7 +25,10 @@ public class Weather implements Parcelable {
 	private String main;
 	private String description;
 	private String icon;
-
+	
+	public Weather()
+	{}
+	
 	public Weather(Parcel in){
 		id=in.readLong();
 		main=in.readString();

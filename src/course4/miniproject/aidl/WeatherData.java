@@ -45,7 +45,7 @@ public class WeatherData implements Parcelable {
     	mBase=in.readString();
     	mMain=(Main)in.readValue(Main.class.getClassLoader());
     	in.readList(mWeather,Weather.class.getClassLoader());
-    	mWind=(Wind)in.readValue(Wind.class.getClassLoader());
+    	//mWind=(Wind)in.readValue(Wind.class.getClassLoader());
         mDt=in.readLong();
         mId=in.readLong();
         mName=in.readString();

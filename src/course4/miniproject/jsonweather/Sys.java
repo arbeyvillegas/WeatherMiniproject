@@ -25,7 +25,10 @@ public class Sys implements Parcelable {
 	private String mCountry;
 	private long mSunrise;
 	private long mSunset;
-
+	
+	public Sys()
+	{}
+	
 	public Sys(Parcel in) {
 		mMessage = in.readDouble();
 		mCountry = in.readString();

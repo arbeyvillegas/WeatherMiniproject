@@ -6,4 +6,7 @@
     <string name="result_string">Result</string>
     <string name="refernces_string">References</string>
     <string name="year_string">Year</string>
+    <string name="btn_Sync">Get Weather Sync</string>
+    <string name="btn_Async">Get Weather Async</string>
+    <string name="edit_City">Please enter a city to look up.</string>
 </resources>

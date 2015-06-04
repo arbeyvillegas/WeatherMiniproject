@@ -375,15 +375,22 @@ public class WeatherOpsImpl implements WeatherOps {
     private void displayResults(WeatherData result) {
         mResult = result;
         
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String formatteDate = df.format(Calendar.getInstance().getTime());
-        
-        mlabelCiudad.get().setText(mEditText.get().getText() + ", " + mResult.mSys.getCountry());
-        mlabelTodayDina.get().setText(formatteDate);
-        mlabelGrados.get().setText(String.valueOf(mResult.mMain.getTemp()).concat(" °C"));
-        mHumidity.get().setText("Humidity: " + mResult.mMain.getHumidity());
-        mPressure.get().setText("Pressure: " + mResult.mMain.getPressure());
-        //mWind.get().setText("Wind: " + String.valueOf(mResult.mWind.getSpeed()));
+        if(mResult.mCod != 404)
+        {
+	        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	        String formatteDate = df.format(Calendar.getInstance().getTime());
+	        
+	        mlabelCiudad.get().setText(mEditText.get().getText() + ", " + mResult.mSys.getCountry());
+	        mlabelTodayDina.get().setText(formatteDate);
+	        mlabelGrados.get().setText(String.valueOf(mResult.mMain.getTemp()).concat(" °C"));
+	        mHumidity.get().setText("Humidity: " + mResult.mMain.getHumidity());
+	        mPressure.get().setText("Pressure: " + mResult.mMain.getPressure());
+	        //mWind.get().setText("Wind: " + String.valueOf(mResult.mWind.getSpeed()) + "Km/h SW");
+        }else
+        {
+        	Utils.showToast(mActivity.get(),
+                    "Not foud city " + mEditText.get().getText());
+        }
     }
 
     /**

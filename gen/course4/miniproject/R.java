@@ -21,14 +21,21 @@ public final class R {
         public static final int plan=0x7f020001;
     }
     public static final class id {
+        public static final int Humidity=0x7f070009;
+        public static final int Pressure=0x7f07000a;
+        public static final int Wind=0x7f07000b;
         public static final int btnAsync=0x7f070004;
         public static final int btnSync=0x7f070002;
         public static final int container=0x7f070000;
-        public static final int db_refs=0x7f070006;
+        public static final int db_refs=0x7f07000d;
         public static final int editText1=0x7f070003;
         public static final int img=0x7f070001;
-        public static final int name=0x7f070007;
-        public static final int year_added_to_db=0x7f070005;
+        public static final int labelCiudad=0x7f070005;
+        public static final int labelGrados=0x7f070008;
+        public static final int labelToday=0x7f070006;
+        public static final int labelTodayDina=0x7f070007;
+        public static final int name=0x7f07000e;
+        public static final int year_added_to_db=0x7f07000c;
     }
     public static final class layout {
         public static final int main_activity=0x7f030000;

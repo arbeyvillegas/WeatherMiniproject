@@ -51,6 +51,78 @@
             android:textColor="#000000"
             android:textColorHint="#000000" />
         
+        
+        <TextView
+	        android:id="@+id/labelCiudad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btnAsync"
+            android:layout_marginTop="10dp"
+            android:textColor="#0357B7"
+            android:textSize="25sp"/>
+        
+        <TextView
+	        android:id="@+id/labelToday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/labelCiudad"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="Today" />
+        
+        <TextView
+	        android:id="@+id/labelTodayDina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/labelToday"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+        
+        <TextView
+	        android:id="@+id/labelGrados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/labelTodayDina"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textSize="35sp"/>
+        
+        <TextView
+	        android:id="@+id/Humidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/labelGrados"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textSize="18sp"/>
+        
+        <TextView
+	        android:id="@+id/Pressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/Humidity"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+        
+        <TextView
+	        android:id="@+id/Wind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/Pressure"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textSize="18sp"/>
+        
+        
     </RelativeLayout >
 
 </LinearLayout>

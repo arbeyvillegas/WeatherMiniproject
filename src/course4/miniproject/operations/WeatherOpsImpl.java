@@ -1,6 +1,9 @@
 package course4.miniproject.operations;
 
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import course4.miniproject.R;
@@ -11,7 +14,6 @@ import course4.miniproject.aidl.WeatherRequest;
 import course4.miniproject.aidl.WeatherResults;
 import course4.miniproject.services.WeatherServiceAsync;
 import course4.miniproject.services.WeatherServiceSync;
-import course4.miniproject.utils.WeatherDataArrayAdapter;
 import course4.miniproject.utils.GenericServiceConnection;
 import course4.miniproject.utils.Utils;
 import android.content.Context;
@@ -21,7 +23,7 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * This class implements all the Weather-related operations defined in
@@ -37,27 +39,22 @@ public class WeatherOpsImpl implements WeatherOps {
      * Used to enable garbage collection.
      */
     protected WeakReference<MainActivity> mActivity;
-    	
-    /**
-     * The ListView that will display the results to the user.
-     */
-    protected WeakReference<ListView> mListView;
 
     /**
      * Weather entered by the user.
      */
     protected WeakReference<EditText> mEditText;
+    protected WeakReference<TextView> mlabelCiudad;
+    protected WeakReference<TextView> mlabelTodayDina;
+    protected WeakReference<TextView> mlabelGrados;
+    protected WeakReference<TextView> mHumidity;
+    protected WeakReference<TextView> mPressure;
+    protected WeakReference<TextView> mWind;
 
     /**
      * List of results to display (if any).
      */
     protected WeatherData mResult;
-
-    /**
-     * A custom ArrayAdapter used to display the list of WeatherData
-     * objects.
-     */
-    protected WeakReference<WeatherDataArrayAdapter> mAdapter;
 
     /**
      * This GenericServiceConnection is used to receive results after
@@ -158,7 +155,29 @@ public class WeatherOpsImpl implements WeatherOps {
         // (if any).
         mEditText = new WeakReference<>
             ((EditText) mActivity.get().findViewById(R.id.editText1));
-
+        
+        mlabelCiudad= new WeakReference<>
+        	((TextView) mActivity.get().findViewById(R.id.labelCiudad));
+        
+        
+        
+        
+        
+        mlabelTodayDina= new WeakReference<>
+    		((TextView) mActivity.get().findViewById(R.id.labelTodayDina));
+        
+        mlabelGrados= new WeakReference<>
+    		((TextView) mActivity.get().findViewById(R.id.labelGrados));
+        
+        mHumidity= new WeakReference<>
+    		((TextView) mActivity.get().findViewById(R.id.Humidity));
+        
+        mPressure= new WeakReference<>
+    		((TextView) mActivity.get().findViewById(R.id.Pressure));
+        
+        mWind= new WeakReference<>
+    		((TextView) mActivity.get().findViewById(R.id.Wind));
+        
         // Store the ListView for displaying the results entered.
         //mListView = new WeakReference<>
         //    ((ListView) mActivity.get().findViewById(R.id.listView1));
@@ -355,11 +374,16 @@ public class WeatherOpsImpl implements WeatherOps {
      */
     private void displayResults(WeatherData result) {
         mResult = result;
-
-        // Set/change data set.
-        //mAdapter.get().clear();
-        //mAdapter.get().addAll(mResult);
-        //mAdapter.get().notifyDataSetChanged();
+        
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formatteDate = df.format(Calendar.getInstance().getTime());
+        
+        mlabelCiudad.get().setText(mEditText.get().getText() + ", " + mResult.mSys.getCountry());
+        mlabelTodayDina.get().setText(formatteDate);
+        mlabelGrados.get().setText(String.valueOf(mResult.mMain.getTemp()).concat(" °C"));
+        mHumidity.get().setText("Humidity: " + mResult.mMain.getHumidity());
+        mPressure.get().setText("Pressure: " + mResult.mMain.getPressure());
+        //mWind.get().setText("Wind: " + String.valueOf(mResult.mWind.getSpeed()));
     }
 
     /**
@@ -369,6 +393,15 @@ public class WeatherOpsImpl implements WeatherOps {
         Utils.hideKeyboard(mActivity.get(),
                            mEditText.get().getWindowToken());
         mResult = null;
+        
+        mlabelCiudad.get().setText("");
+        mlabelTodayDina.get().setText("");
+        mlabelGrados.get().setText("");
+        mHumidity.get().setText("");
+        mPressure.get().setText("");
+        mWind.get().setText("");
+        
+        
         //mAdapter.get().clear();
         //mAdapter.get().notifyDataSetChanged();
     }

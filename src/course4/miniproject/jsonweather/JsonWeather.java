@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import android.util.Log;
+
 
 /**
  * This "Plain Ol' Java Object" (POJO) class represents data of
@@ -11,6 +13,7 @@ import java.util.List;
  * care about all the data, just the fields defined in this class.
  */
 public class JsonWeather {
+	protected final String TAG = getClass().getSimpleName();
     /**
      * Various tags corresponding to data downloaded in Json from the
      * Weather Service.
@@ -59,6 +62,7 @@ public class JsonWeather {
         mWind = wind;
         mDt = dt;
         mId = id;
+        Log.d(TAG,"Establece nombre "+name);
         mName = name;
         mCod = cod;
     }
@@ -211,6 +215,8 @@ public class JsonWeather {
     }
     
     public boolean passedTenMin(Date date){
-    	return (date.getTime()-mDate.getTime()>10000);
+    	long timePassed=date.getTime()-mDate.getTime();
+    	Log.d(TAG,"Time passed "+timePassed);
+    	return (timePassed>120000);
     }
 }

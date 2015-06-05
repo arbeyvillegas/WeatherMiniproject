@@ -82,7 +82,7 @@ public class Utils {
             // Append the location to create the full URL.
             final URL url =
                 new URL(sWeather_Web_Service_URL
-                        + city);
+                        + city +"&units=metric");
 
             // Opens a connection to the Weather Service.
             HttpURLConnection urlConnection =
@@ -119,6 +119,7 @@ public class Utils {
     }
     
     private static WeatherData createWeatherData(JsonWeather jsonWeather){
+    	Log.d(TAG,"Nombre de jsonweather "+jsonWeather.getName());
     	WeatherData weatherData=new WeatherData(jsonWeather.getSys(), jsonWeather.getBase()
     			, jsonWeather.getMain(), jsonWeather.getWeather(), jsonWeather.getWind()
     			, jsonWeather.getDt(), jsonWeather.getId(), jsonWeather.getName(), jsonWeather.getCod());

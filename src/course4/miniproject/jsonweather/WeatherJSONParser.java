@@ -85,6 +85,7 @@ public class WeatherJSONParser {
                 	break;
                 case JsonWeather.name_JSON:
                 	jsonWeather.setName(reader.nextString());
+                	Log.d(TAG,"Obtiene nombre parser "+jsonWeather.getName());
                 	break;
                 case JsonWeather.sys_JSON:
                 	jsonWeather.setSys(parseSys(reader));
@@ -93,6 +94,7 @@ public class WeatherJSONParser {
                 	jsonWeather.setWeather(parseWeathers(reader));
                 	break;
                 case JsonWeather.wind_JSON:
+                	Log.d(TAG,"Obtiene wind parser");
                 	jsonWeather.setWind(parseWind(reader));
                 	break;
                 default:

@@ -1,7 +1,5 @@
 package course4.miniproject.services;
 
-import java.util.List;
-
 import course4.miniproject.aidl.WeatherData;
 import course4.miniproject.aidl.WeatherRequest;
 import course4.miniproject.aidl.WeatherResults;

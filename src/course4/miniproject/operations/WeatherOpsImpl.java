@@ -4,7 +4,9 @@ import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import course4.miniproject.R;
 import course4.miniproject.activities.MainActivity;
@@ -12,6 +14,7 @@ import course4.miniproject.aidl.WeatherCall;
 import course4.miniproject.aidl.WeatherData;
 import course4.miniproject.aidl.WeatherRequest;
 import course4.miniproject.aidl.WeatherResults;
+import course4.miniproject.jsonweather.JsonWeather;
 import course4.miniproject.services.WeatherServiceAsync;
 import course4.miniproject.services.WeatherServiceSync;
 import course4.miniproject.utils.GenericServiceConnection;
@@ -30,6 +33,12 @@ import android.widget.TextView;
  * the WeatherOps interface.
  */
 public class WeatherOpsImpl implements WeatherOps {
+	
+	/**
+	 * Persist cache
+	 */
+	private final Map<String,WeatherData> mCache=new HashMap<String,WeatherData>();
+	
     /**
      * Debugging tag used by the Android logger.
      */
@@ -407,9 +416,5 @@ public class WeatherOpsImpl implements WeatherOps {
         mHumidity.get().setText("");
         mPressure.get().setText("");
         mWind.get().setText("");
-        
-        
-        //mAdapter.get().clear();
-        //mAdapter.get().notifyDataSetChanged();
     }
 }

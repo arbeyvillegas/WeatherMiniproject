@@ -9,6 +9,7 @@ import course4.miniproject.jsonweather.Weather;
 import course4.miniproject.jsonweather.Wind;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 /**
  * This class is a Plain Old Java Object (POJO) used for data
@@ -41,14 +42,15 @@ public class WeatherData implements Parcelable {
      * is used to de-marshal an WeatherData from the Parcel of data.
      */
     private WeatherData(Parcel in) {
-    	mSys=(Sys)in.readValue(Sys.class.getClassLoader());
+    	mSys=(Sys)in.readParcelable(Sys.class.getClassLoader());
     	mBase=in.readString();
-    	mMain=(Main)in.readValue(Main.class.getClassLoader());
+    	mMain=(Main)in.readParcelable(Main.class.getClassLoader());
     	in.readList(mWeather,Weather.class.getClassLoader());
-    	//mWind=(Wind)in.readValue(Wind.class.getClassLoader());
+    	mWind=(Wind)in.readParcelable(Wind.class.getClassLoader());
         mDt=in.readLong();
         mId=in.readLong();
         mName=in.readString();
+        Log.d("WeatherData","En clase weather data "+mName);
         mCod=in.readLong();
     }
 
@@ -67,6 +69,7 @@ public class WeatherData implements Parcelable {
         mDt=dt;
         mId=id;
         mName=name;
+        Log.d("WeatherData","En clase weather data constructor con params "+mName);
         mCod=cod;
     }
 
@@ -103,13 +106,14 @@ public class WeatherData implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest,
                               int flags) {
-    	dest.writeValue(mSys);
+    	dest.writeParcelable(mSys,0);
     	dest.writeString(mBase);
-    	dest.writeValue(mMain);
+    	dest.writeParcelable(mMain,0);
     	dest.writeList(mWeather);
-    	dest.writeValue(mWind);
+    	dest.writeParcelable(mWind, 0);
     	dest.writeLong(mDt);
     	dest.writeLong(mId);
+    	Log.d("WeatherData","En clase weather data writetoParcel "+mName);
     	dest.writeString(mName);
     	dest.writeLong(mCod);
     }
